@@ -1,8 +1,8 @@
 from setuptools import setup, find_packages
-from {{ project_name }} import __version__
+from hotel import __version__
 
 setup(
-    name='{{ project_name }}',
+    name='hotel',
     version=__version__,
 
     url='http://host/',
@@ -13,8 +13,7 @@ setup(
     include_package_data=True,
     scripts=['scripts/manage.py'],
 
-    install_requires=(
-        'django<1.7',
-    )
+    #install_requires=(
+    #    'django<1.7',
+    #)
 )
-

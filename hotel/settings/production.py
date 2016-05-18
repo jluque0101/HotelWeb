@@ -24,8 +24,8 @@ MANAGERS = ADMINS
 
 # Application definition
 
-ROOT_URLCONF = '{{ project_name}}.urls'
-WSGI_APPLICATION = '{{ project_name}}.wsgi.application'
+ROOT_URLCONF = 'hotel.urls'
+WSGI_APPLICATION = 'hotel.wsgi.application'
 
 INSTALLED_APPS = (
     'django.contrib.admin',
@@ -35,7 +35,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    # '{{ project_name}}.apps.accounts',
+    # 'hotel.apps.accounts',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -72,9 +72,9 @@ TEMPLATE_DIRS = (
 # Database
 
 # Internationalization
-LANGUAGE_CODE = 'cs-cz'
+LANGUAGE_CODE = 'en'
 LANGUAGES = (
-    'cs', gettext_noop('Czech'),
+    # 'cs', gettext_noop('Czech'),
     'en', gettext_noop('English'),
 )
 
@@ -83,7 +83,9 @@ USE_I18N = True
 USE_L10N = True
 USE_TZ = True
 
-LOCALE_PATHS = os.path.join(PROJECT_ROOT, 'locale')
+#LOCALE_PATHS = (
+#    os.path.join(PROJECT_ROOT, 'locale')
+#)
 
 # Static files (CSS, JavaScript, Images)
 
@@ -120,7 +122,7 @@ LOGGING = {
     'handlers': {
         'null': {
             'level': 'DEBUG',
-            'class': 'django.utils.log.NullHandler',
+            'class': 'logging.NullHandler',
         },
         'console': {
             'level': 'DEBUG',

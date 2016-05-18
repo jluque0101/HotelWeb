@@ -1,2 +1,2 @@
-def test_{{ project_name }}():
+def test_hotel():
     assert True
