@@ -14,8 +14,11 @@ TEMPLATE_DEBUG = False
 SITE_ID = 1
 
 ALLOWED_HOSTS = (
-    'host',
+    '*',
 )
+
+EMAIL_HOST='localhost'
+EMAIL_PORT=1025
 
 ADMINS = (
     ('author', 'email'),
@@ -98,6 +101,8 @@ MEDIA_ROOT = os.path.join(PUBLIC_ROOT, 'media')
 STATICFILES_DIRS = (
     os.path.join(PROJECT_ROOT, 'static'),
 )
+
+STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
