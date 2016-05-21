@@ -23,5 +23,8 @@ fresh_syncdb:
 syncdb:
 	python $(scripts)/manage.py syncdb --noinput
 
+collectstatic:
+	python $(scripts)/manage.py collectstatic
+
 run:
 	python $(scripts)/manage.py runserver 0.0.0.0:8000
