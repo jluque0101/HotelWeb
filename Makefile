@@ -28,3 +28,7 @@ collectstatic:
 
 run:
 	python $(scripts)/manage.py runserver 0.0.0.0:8000
+
+herokudeploy:
+	git push heroku master
+
