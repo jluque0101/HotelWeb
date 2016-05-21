@@ -49,7 +49,7 @@
 				<div class="col-md-3">
 		            <p class="lead">Shop Name</p>
 		            <div class="list-group">
-		                <a href="#" class="list-group-item {% if name == 'home' %}  {%endif%}">Inicio</a>
+		                <a href="#" class="list-group-item {% if page == "home" %} active {%endif%}">Inicio</a>
 		                <a href="#" class="list-group-item">Reservar</a>
 		                <a href="#" class="list-group-item">Galería de fotos</a>
 						<a href="#" class="list-group-item">Habitaciones</a>
@@ -58,6 +58,7 @@
 						<a href="#" class="list-group-item">Contacto</a>
 		            </div>
 		        </div>
+
 				<div class="col-md-9">
     				{% block content %}(no content){% endblock %}
 				</div>
