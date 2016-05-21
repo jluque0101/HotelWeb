@@ -1,1 +1,23 @@
--e .
+apipkg==1.4
+coverage==4.0.3
+Django==1.9.6
+django-bootstrap3==7.0.1
+django-debug-toolbar==1.4
+django-dynamic-fixture==1.8.5
+execnet==1.4.1
+fake-factory==0.5.7
+funcsigs==1.0.2
+ipaddress==1.0.16
+mock==2.0.0
+pbr==1.9.1
+py==1.4.31
+pytest==2.9.1
+pytest-cov==2.2.1
+pytest-django==2.9.1
+pytest-splinter==1.7.3
+pytest-xdist==1.14
+python-dateutil==2.5.3
+selenium==2.53.2
+six==1.10.0
+splinter==0.7.3
+sqlparse==0.1.19
