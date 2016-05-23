@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load bootstrap3 %}
+
+{% block title %}{% endblock %}
+
+{% block content %}
+<!-- Page Content -->
+
+    <div class="container">
+        <div class="row">
+			<div class="col-md-3">
+                <form role="form" class="form-horizontal" method="post">
+                    {% csrf_token %}
+                    {% bootstrap_form form layout="horizontal" %}
+                    {% buttons reset='Vaciar' submit='Siguiente' layout='horizontal' %}{% endbuttons %}
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- /.container -->
+
+{% endblock %}
