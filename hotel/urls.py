@@ -8,6 +8,7 @@ admin.autodiscover()
 urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$', HomePageView.as_view(), name='home'),
+	url(r'^booking/', BookingPageView.as_view(), name='booking'),
     # url(r'^formset$', DefaultFormsetView.as_view(), name='formset_default'),
     # url(r'^form$', DefaultFormView.as_view(), name='form_default'),
     # url(r'^form_by_field$', DefaultFormByFieldView.as_view(), name='form_by_field'),
