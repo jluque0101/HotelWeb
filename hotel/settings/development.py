@@ -19,3 +19,4 @@ if 'debug_toolbar' not in INSTALLED_APPS:
     INSTALLED_APPS += ('debug_toolbar',)
 
 # EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+# Settings for django-bootstrap3
