@@ -47,11 +47,11 @@
 	<div class="container">
 	    <div class="row">
 				<div class="col-md-3">
-		            <p class="lead">Shop Name</p>
+		            <!-- <p class="lead">{{ page }}</p> -->
 		            <div class="list-group">
-		                <a href="#" class="list-group-item {% if page == "home" %} active {%endif%}">Inicio</a>
-		                <a href="#" class="list-group-item">Reservar</a>
-		                <a href="#" class="list-group-item">Galería de fotos</a>
+						<a href="{% url 'home' %}" class="list-group-item {% if page == "home" %} active {%endif%}">Inicio</a>
+		                <a href="{% url 'booking' %}" class="list-group-item {% if page == "booking" %} active {%endif%}">Reservar</a>
+		                <a href="{% url 'home' %}" class="list-group-item">Galería de fotos</a>
 						<a href="#" class="list-group-item">Habitaciones</a>
 						<a href="#" class="list-group-item">Ocio</a>
 						<a href="#" class="list-group-item">Transporte</a>
