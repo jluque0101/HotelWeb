@@ -5,20 +5,40 @@
 
 {% block content %}
 <!-- Page Content -->
+    <script>
+        $(document).ready(function(){
+            $("#first-button").click(function(){
+                $("#first-step").animate({
+                width: "toggle"
+                /*
+                width: "show"
+                width: "hide"
+                */
+                });
+            });
+        });
+    </script>
 
-    <div class="container">
-        <div class="row">
-			<div class="col-md-3">
-                <form role="form" class="form-horizontal" method="post">
-                    {% csrf_token %}
-                    {% bootstrap_form form layout="horizontal" %}
-                    {% buttons reset='Vaciar' submit='Siguiente' layout='horizontal' %}{% endbuttons %}
-                </form>
+    <div class="caption-full">
+        <h2 class="text-center"> Seleccione una fecha de entrada y otra de salida </h2>
+        <form role="form" method="post" id="first-step">
+            {% csrf_token %}
+            {% bootstrap_form form %}
+            <div  class="form-group">
+                <input id="first-button" type="button" class="btn btn-primary" value="Siguiente"></input>
             </div>
-        </div>
-    </div>
-</div>
+        </form>
 
+        <form role="form" method="post" id="second-step">
+            {% csrf_token %}
+            {% bootstrap_form form %}
+            <div  class="form-group">
+                <input id="second-button" type="button" class="btn btn-primary" value="Siguiente"></input>
+            </div>
+        </form>
+
+
+    </div>
 
 <!-- /.container -->
 
