@@ -8,7 +8,7 @@ from django.views.generic import FormView
 from django.views.generic.base import TemplateView
 from django.contrib import messages
 
-from .forms import ToDoForm
+from .forms import SelectDayForm, SelectRoomForm
 
 
 # http://yuji.wordpress.com/2013/01/30/django-form-field-in-initial-data-requires-a-fieldfile-instance/
@@ -30,10 +30,10 @@ class HomePageView(TemplateView):
 
 class BookingPageView(TemplateView):
     template_name = 'booking.html'
-    form_class = ToDoForm
 
     def get_context_data(self, **kwargs):
         context = super(BookingPageView, self).get_context_data(**kwargs)
         context['page'] = 'booking'
-        context['form'] = ToDoForm()
+        context['dayform'] = SelectDayForm()
+        context['roomform'] = SelectRoomForm()
         return context

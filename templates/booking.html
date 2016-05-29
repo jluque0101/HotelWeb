@@ -8,7 +8,18 @@
     <script>
         $(document).ready(function(){
             $("#first-button").click(function(){
-                $("#first-step").animate({
+                $("#first-step-div").animate({
+                width: "toggle"
+                /*
+                width: "show"
+                width: "hide"
+                */
+                });
+                var elem = document.getElementById('second-step-div');
+                elem.style.visibility = 'visible';
+                var elem = document.getElementById('page-title');
+                elem.innerHTML = "Seleccione una habitación"
+                $("#second-step-div").animate({
                 width: "toggle"
                 /*
                 width: "show"
@@ -20,22 +31,27 @@
     </script>
 
     <div class="caption-full">
-        <h2 class="text-center"> Seleccione una fecha de entrada y otra de salida </h2>
-        <form role="form" method="post" id="first-step">
-            {% csrf_token %}
-            {% bootstrap_form form %}
-            <div  class="form-group">
-                <input id="first-button" type="button" class="btn btn-primary" value="Siguiente"></input>
-            </div>
-        </form>
+        <h2 class="text-center" id="page-title"> Seleccione una fecha de entrada y otra de salida </h2>
+        <div id="first-step-div">
 
-        <form role="form" method="post" id="second-step">
-            {% csrf_token %}
-            {% bootstrap_form form %}
-            <div  class="form-group">
-                <input id="second-button" type="button" class="btn btn-primary" value="Siguiente"></input>
-            </div>
-        </form>
+            <form role="form" method="post">
+                {% csrf_token %}
+                {% bootstrap_form dayform %}
+                <div  class="form-group">
+                    <input id="first-button" type="button" class="btn btn-primary" value="Siguiente"></input>
+                </div>
+            </form>
+        </div>
+
+        <div id="second-step-div" style="display: none;">
+            <form role="form" method="post" id="second-step" >
+                {% csrf_token %}
+                {% bootstrap_form roomform %}
+                <div  class="form-group">
+                    <input id="second-button" type="button" class="btn btn-primary" value="Siguiente"></input>
+                </div>
+            </form>
+        </div>
 
 
     </div>
