@@ -75,6 +75,13 @@ TEMPLATE_DIRS = (
 )
 
 # Database
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        # 'NAME': os.path.join(TMP_PATH, 'db.sqlite3'),
+        'NAME': os.path.join(PROJECT_ROOT, 'DIU_HOTEL_WASP.sqlite3'),
+    }
+}
 
 # Internationalization
 LANGUAGE_CODE = 'es'
