@@ -18,6 +18,10 @@
                 var elem = document.getElementById('second-step-div');
                 elem.style.visibility = 'visible';
                 var elem = document.getElementById('page-title');
+                var llegada = document.getElementById('id_llegada');
+                var salida = document.getElementById('id_salida');
+                var fechas = document.getElementById('fechas');
+                fechas.innerHTML = "<strong>del </strong>" + llegada.value + "<strong> al </strong>" + salida.value;
                 elem.innerHTML = "Seleccione una habitación"
                 $("#second-step-div").animate({
                 width: "toggle"
@@ -32,24 +36,69 @@
 
     <div class="caption-full">
         <h2 class="text-center" id="page-title"> Seleccione una fecha de entrada y otra de salida </h2>
+        <h4 class="text-center" id="fechas"></h4>
         <div id="first-step-div">
 
             <form role="form" method="post">
                 {% csrf_token %}
                 {% bootstrap_form dayform %}
-                <div  class="form-group">
-                    <input id="first-button" type="button" class="btn btn-primary" value="Siguiente"></input>
-                </div>
+
+                <div class="progress">
+                   <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"><span class="sr-only">0% Completado</span></div>
+                 </div>
+                 <div  class="form-group">
+                     <input id="first-button" type="button" class="btn btn-primary" value="Siguiente"></input>
+                 </div>
             </form>
         </div>
 
         <div id="second-step-div" style="display: none;">
             <form role="form" method="post" id="second-step" >
                 {% csrf_token %}
+
+
+
                 {% bootstrap_form roomform %}
-                <div  class="form-group">
+                <p id="room_info"></p>
+
+                {%for room in rooms%}
+                    <div class="jumbotron" id="{{ room.id_habitacion }}" style="display: none;">
+                        <h2>{{room.titulo}}</h2>
+                        <p><span class="glyphicon glyphicon-fire" aria-hidden="true"></span> {{room.tipo}} </p>
+                        <p><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Descripcion: {{room.descripcion}} </p>
+                        <p><span class="glyphicon glyphicon-euro" aria-hidden="true"></span> Precio:{{room.precio}} </p>
+                        <p><span class="glyphicon glyphicon-object-align-left" aria-hidden="true"></span> Planta: {{room.planta}} </p>
+                        <p><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Camas: {{room.camas}} </p>
+                    </div>
+                {%endfor%}
+
+                <div class="progress">
+                   <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 30%;"><span class="sr-only">30% Completado</span></div>
+                 </div>
+
+                <div class="form-group">
                     <input id="second-button" type="button" class="btn btn-primary" value="Siguiente"></input>
                 </div>
+
+
+
+                <script>
+                function ShowRoomInfo() {
+                    var selected_room = document.getElementById("id_disponibles").value;
+                    //document.getElementById("room_info").innerHTML = "You selected: " + selected_room;
+
+                    for (i = 1; i <= {{room_number}}; i++){
+                        var room = document.getElementById(i);
+                        room.style.display = 'none';
+                    }
+
+                    var room = document.getElementById(selected_room);
+                    room.style.display = 'block';
+
+                    //document.getElementById("room_info").innerHTML = "You selected: " + selected_room;
+                }
+                </script>
+
             </form>
         </div>
 

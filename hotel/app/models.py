@@ -5,40 +5,38 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 
-class Piso (models.Model):
+class Habitacion (models.Model):
 	OPCIONES_CHOICES = (
-		('PISO', 'Piso'),
-		('HABITACION', 'Habitacion')
+		('Fumador', 'Fumador'),
+		('NoFumador', 'No fumador')
 	)
-	id_piso = models.AutoField(primary_key=True)
-	user = models.ForeignKey(User, blank=True, null=True)
-	titulo = models.CharField (max_length=200, blank=True)
-	tipo = models.CharField(max_length=10, choices=OPCIONES_CHOICES, default="PISO")
-	lat = models.FloatField(null=True,default=0.0)
-	lng = models.FloatField(null=True,default=0.0)
+	id_habitacion = models.AutoField(primary_key=True)
+	titulo = models.CharField (max_length=200, default='Doble')
+	tipo = models.CharField(max_length=10, choices=OPCIONES_CHOICES, default="NoFumador")
 	descripcion = models.TextField ('Descripcion', blank=True)
-	direccion = models.CharField (max_length=200, blank=True)
-	fecha_registro = models.DateField ('Fecha registro', default=datetime.date.today)
-	precio = models.FloatField(default=0.0)
 
-	REQUIRED_FIELDS = ['user,titulo,direccion,precio,fecha_registro,descripcion']
+	precio = models.FloatField(default=0.0)
+	planta = models.FloatField(default=0.0)
+	camas = models.FloatField(default=0.0)
+
+	REQUIRED_FIELDS = ['tipo,camas,precio,planta,descripcion']
 
 	class Meta:
-		verbose_name_plural = 'Pisos'
-		ordering = ['id_piso']
+		verbose_name_plural = 'Habitaciones'
+		ordering = ['id_habitacion']
 	def __unicode__(self):
 		return u"%s" % self.titulo
 
 def get_img_url(instance, filename):
-	return 'pisos/%d/%s' % (instance.id_piso.id_piso, filename)
+	return 'habitaciones/%d/%s' % (instance.id_habitacion.id_habitacion, filename)
 
 class Imagen(models.Model):
 	id_img = models.AutoField(primary_key=True)
 	titulo = models.CharField (max_length=200, default='Titulo de la Imagen')
-	id_piso = models.ForeignKey(Piso, blank=True, null=True)
+	id_habitacion = models.ForeignKey(Habitacion, blank=True, null=True)
 	pic = models.ImageField(upload_to=get_img_url)
 	class Meta:
 		verbose_name_plural = 'Imagenes'
-		ordering = ['id_piso']
+		ordering = ['id_habitacion']
 	def __unicode__(self):
 		return u"%s" % self.titulo

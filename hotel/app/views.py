@@ -7,6 +7,7 @@ from django.db.models.fields.files import FieldFile
 from django.views.generic import FormView
 from django.views.generic.base import TemplateView
 from django.contrib import messages
+from hotel.app.models import Habitacion
 
 from .forms import SelectDayForm, SelectRoomForm
 
@@ -36,4 +37,18 @@ class BookingPageView(TemplateView):
         context['page'] = 'booking'
         context['dayform'] = SelectDayForm()
         context['roomform'] = SelectRoomForm()
+        rooms = Habitacion.objects.order_by('precio').values()
+        number_rooms = Habitacion.objects.latest('id_habitacion').id_habitacion
+        context['room_number'] = number_rooms
+        context['rooms'] = rooms
+        return context
+
+
+class GalleryPageView(TemplateView):
+    template_name = 'gallery.html'
+
+
+    def get_context_data(self, **kwargs):
+        context = super(GalleryPageView, self).get_context_data(**kwargs)
+        context['page'] = 'gallery'
         return context

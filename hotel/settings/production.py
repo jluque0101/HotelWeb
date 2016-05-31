@@ -77,10 +77,10 @@ TEMPLATE_DIRS = (
 # Database
 
 # Internationalization
-LANGUAGE_CODE = 'en'
+LANGUAGE_CODE = 'es'
 LANGUAGES = (
     # 'cs', gettext_noop('Czech'),
-    'en', gettext_noop('English'),
+    'es', gettext_noop('Spanish'),
 )
 
 TIME_ZONE = 'Europe/Prague'

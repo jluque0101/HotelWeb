@@ -7,6 +7,6 @@ __pycache__/
 *.sublime-*
 
 # other files
-db.sqlite3
+# db.sqlite3
 hotel.egg-info/
 public/

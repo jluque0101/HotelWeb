@@ -9,7 +9,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         # 'NAME': os.path.join(TMP_PATH, 'db.sqlite3'),
-        'NAME': os.path.join(PROJECT_ROOT, 'db.sqlite3'),
+        'NAME': os.path.join(PROJECT_ROOT, 'DIU_HOTEL_WASP.sqlite3'),
     }
 }
 
