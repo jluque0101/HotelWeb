@@ -10,10 +10,6 @@ $(document).ready(function(){
     $("#first-button").click(function(){
         $("#first-step-div").animate({
             width: "toggle"
-            /*
-            width: "show"
-            width: "hide"
-            */
         });
         var elem = document.getElementById('second-step-div');
         elem.style.visibility = 'visible';
@@ -25,10 +21,6 @@ $(document).ready(function(){
         elem.innerHTML = "Seleccione una habitación"
         $("#second-step-div").animate({
             width: "toggle"
-            /*
-            width: "show"
-            width: "hide"
-            */
         });
     });
     $("#second-button").click(function(){
@@ -46,10 +38,6 @@ $(document).ready(function(){
         elem.innerHTML = "Introduzca sus datos personales"
         $("#third-step-div").animate({
             width: "toggle"
-            /*
-            width: "show"
-            width: "hide"
-            */
         });
     });
 
@@ -68,19 +56,11 @@ $(document).ready(function(){
 
         $("#first-step-div").animate({
             width: "toggle"
-            /*
-            width: "show"
-            width: "hide"
-            */
         });
     });
     $("#third-button").click(function(){
         $("#fourth-step-div").animate({
             width: "toggle"
-            /*
-            width: "show"
-            width: "hide"
-            */
         });
 
         var elem = document.getElementById('page-title');
@@ -118,19 +98,12 @@ $(document).ready(function(){
 
         $("#third-step-div").animate({
             width: "toggle"
-            /*
-            width: "show"
-            width: "hide"
-            */
         });
     });
+
     $("#third-back-button").click(function(){
         $("#third-step-div").animate({
             width: "toggle"
-            /*
-            width: "show"
-            width: "hide"
-            */
         });
 
         var elem = document.getElementById('second-step-div');
@@ -144,14 +117,41 @@ $(document).ready(function(){
 
         $("#second-step-div").animate({
             width: "toggle"
-            /*
-            width: "show"
-            width: "hide"
-            */
         });
 
 
     });
+
+    $("#last-button").click(function(){
+        $("#complete").show().delay(3000).fadeOut();
+        window.setTimeout(function(){
+
+        // Move to a new location or you can do something else
+            document.location.href = "/";
+
+        }, 4000);
+    });
+
+    $("#last-back-button").click(function(){
+        $("#fourth-step-div").animate({
+            width: "toggle"
+        });
+
+        var elem = document.getElementById('second-step-div');
+        elem.style.visibility = 'visible';
+        var elem = document.getElementById('page-title');
+        var llegada = document.getElementById('id_llegada');
+        var salida = document.getElementById('id_salida');
+        var fechas = document.getElementById('fechas');
+        var habitacion = document.getElementById('id_disponibles');
+        fechas.innerHTML = habitacion.options[habitacion.selectedIndex].text + "<strong> del </strong>" + llegada.value + "<strong> al </strong>" + salida.value;
+        elem.innerHTML = "Introduzca sus datos personales"
+
+        $("#third-step-div").animate({
+            width: "toggle"
+        });
+    });
+
 });
 </script>
 
@@ -260,21 +260,22 @@ $(document).ready(function(){
                 </div>
         </div>
         <form role="form" method="post">
-
-
-
-                <div class="progress">
-                    <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 99%;"><span class="sr-only">99% Completado</span></div>
-                </div>
-                <div  class="form-group">
-                    <input id="last-back-button" type="button" class="btn btn-warning" value="Atras"></input>
-                    <input id="last-button" type="button" class="btn btn-success" value="Confirmar"></input>
-                </div>
-            </form>
-
-
-
-
+            <div class="progress">
+                <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 99%;"><span class="sr-only">99% Completado</span></div>
+            </div>
+            <div  class="form-group">
+                <input id="last-back-button" type="button" class="btn btn-warning" value="Atrás"></input>
+                <input id="last-button" type="button" class="btn btn-success" value="Confirmar"></input>
+            </div>
+        </form>
+        <div id="complete" class="alert alert-success" style="display: none; position:fixed;
+            top: 0px;
+            left: 0px;
+            width: 100%;
+            z-index:9999;
+            border-radius:0px;">
+            <strong>¡Reserva completada!</strong> En un instante serás redirigido a la página de inicio.
+        </div>
     </div>
 
     <!-- /.container -->
