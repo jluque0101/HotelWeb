@@ -17,10 +17,11 @@ IMP_CHOICES = (
 
 class SelectDayForm(forms.Form):
   llegada = forms.DateField(
-      widget=DateTimePicker(options={"format": "YYYY-MM-DD"}))
+      required=True,
+      widget=DateTimePicker(options={"format": "YYYY-MM-DD HH:mm"}))
 
   salida = forms.DateTimeField(
-      required=False,
+      required=True,
       widget=DateTimePicker(options={"format": "YYYY-MM-DD HH:mm"}))
 
 class SelectRoomForm(forms.Form):
@@ -31,3 +32,12 @@ class SelectRoomForm(forms.Form):
     disponibles = forms.ChoiceField(label="Habitaciones disponibles", initial='Despliegue el menú para ver las habitaciones', choices=tupla,
         widget=forms.Select(attrs={"onChange":'ShowRoomInfo()'}
     ))
+
+class PersonalDataForm(forms.Form):
+    nombre = forms.CharField(required=True, max_length=40, initial='Introduzca aqui su nombre')
+    apellidos = forms.CharField(required=True, max_length=60 , initial='Introduzca aqui sus apellidos')
+    email = forms.EmailField(required=True, max_length=60, initial='email@subdominio.dominio')
+    dni = forms.CharField(required=True, max_length=9, initial='12345678A')
+    tarjeta = forms.EmailField(required=True, max_length=15, initial='Introduzca 15 dígitos sin separadores')
+    codigo = forms.EmailField(required=True, max_length=3, initial='Introduzca los 3 dígitos de seguridad')
+    expiracion = forms.EmailField(required=True, max_length=7, initial='Fecha de expiración MM/AAAA')

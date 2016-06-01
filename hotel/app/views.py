@@ -9,7 +9,7 @@ from django.views.generic.base import TemplateView
 from django.contrib import messages
 from hotel.app.models import Habitacion
 
-from .forms import SelectDayForm, SelectRoomForm
+from .forms import SelectDayForm, SelectRoomForm, PersonalDataForm
 
 
 # http://yuji.wordpress.com/2013/01/30/django-form-field-in-initial-data-requires-a-fieldfile-instance/
@@ -41,6 +41,7 @@ class BookingPageView(TemplateView):
         number_rooms = Habitacion.objects.latest('id_habitacion').id_habitacion
         context['room_number'] = number_rooms
         context['rooms'] = rooms
+        context['userform'] = PersonalDataForm()
         return context
 
 

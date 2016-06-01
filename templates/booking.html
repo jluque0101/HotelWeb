@@ -5,106 +5,278 @@
 
 {% block content %}
 <!-- Page Content -->
-    <script>
-        $(document).ready(function(){
-            $("#first-button").click(function(){
-                $("#first-step-div").animate({
-                width: "toggle"
-                /*
-                width: "show"
-                width: "hide"
-                */
-                });
-                var elem = document.getElementById('second-step-div');
-                elem.style.visibility = 'visible';
-                var elem = document.getElementById('page-title');
-                var llegada = document.getElementById('id_llegada');
-                var salida = document.getElementById('id_salida');
-                var fechas = document.getElementById('fechas');
-                fechas.innerHTML = "<strong>del </strong>" + llegada.value + "<strong> al </strong>" + salida.value;
-                elem.innerHTML = "Seleccione una habitación"
-                $("#second-step-div").animate({
-                width: "toggle"
-                /*
-                width: "show"
-                width: "hide"
-                */
-                });
-            });
+<script>
+$(document).ready(function(){
+    $("#first-button").click(function(){
+        $("#first-step-div").animate({
+            width: "toggle"
+            /*
+            width: "show"
+            width: "hide"
+            */
         });
-    </script>
+        var elem = document.getElementById('second-step-div');
+        elem.style.visibility = 'visible';
+        var elem = document.getElementById('page-title');
+        var llegada = document.getElementById('id_llegada');
+        var salida = document.getElementById('id_salida');
+        var fechas = document.getElementById('fechas');
+        fechas.innerHTML = "<strong>del </strong>" + llegada.value + "<strong> al </strong>" + salida.value;
+        elem.innerHTML = "Seleccione una habitación"
+        $("#second-step-div").animate({
+            width: "toggle"
+            /*
+            width: "show"
+            width: "hide"
+            */
+        });
+    });
+    $("#second-button").click(function(){
+        $("#second-step-div").animate({
+            width: "toggle"
+        });
+        var elem = document.getElementById('second-step-div');
+        elem.style.visibility = 'visible';
+        var elem = document.getElementById('page-title');
+        var llegada = document.getElementById('id_llegada');
+        var salida = document.getElementById('id_salida');
+        var fechas = document.getElementById('fechas');
+        var habitacion = document.getElementById('id_disponibles');
+        fechas.innerHTML = habitacion.options[habitacion.selectedIndex].text + "<strong> del </strong>" + llegada.value + "<strong> al </strong>" + salida.value;
+        elem.innerHTML = "Introduzca sus datos personales"
+        $("#third-step-div").animate({
+            width: "toggle"
+            /*
+            width: "show"
+            width: "hide"
+            */
+        });
+    });
 
-    <div class="caption-full">
-        <h2 class="text-center" id="page-title"> Seleccione una fecha de entrada y otra de salida </h2>
-        <h4 class="text-center" id="fechas"></h4>
-        <div id="first-step-div">
+    $("#second-back-button").click(function(){
+        $("#second-step-div").animate({
+            width: "toggle"
+        });
+        var elem = document.getElementById('second-step-div');
+        elem.style.visibility = 'visible';
+        var elem = document.getElementById('page-title');
+        var llegada = document.getElementById('id_llegada');
+        var salida = document.getElementById('id_salida');
+        var fechas = document.getElementById('fechas');
+        fechas.innerHTML = "";
+        elem.innerHTML = "Seleccione una habitación"
 
-            <form role="form" method="post">
-                {% csrf_token %}
-                {% bootstrap_form dayform %}
+        $("#first-step-div").animate({
+            width: "toggle"
+            /*
+            width: "show"
+            width: "hide"
+            */
+        });
+    });
+    $("#third-button").click(function(){
+        $("#fourth-step-div").animate({
+            width: "toggle"
+            /*
+            width: "show"
+            width: "hide"
+            */
+        });
 
-                <div class="progress">
-                   <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"><span class="sr-only">0% Completado</span></div>
-                 </div>
-                 <div  class="form-group">
-                     <input id="first-button" type="button" class="btn btn-primary" value="Siguiente"></input>
-                 </div>
-            </form>
-        </div>
+        var elem = document.getElementById('page-title');
+        var fechas = document.getElementById('fechas');
+        fechas.innerHTML = "";
 
-        <div id="second-step-div" style="display: none;">
-            <form role="form" method="post" id="second-step" >
-                {% csrf_token %}
+        var nombre = document.getElementById('id_nombre');
+        var apellidos = document.getElementById('id_apellidos');
+        var llegada = document.getElementById('id_llegada');
+        var salida = document.getElementById('id_salida');
+        var habitacion = document.getElementById('id_disponibles');
+        var precio = document.getElementById('id_precio_1');
+        var price_string = '#id_precio_'+habitacion.options[habitacion.selectedIndex].value;
 
+        console.log(price_string);
 
+        var res_name = document.getElementById('res_name');
+        var res_surname = document.getElementById('res_surname');
+        var res_in = document.getElementById('res_in');
+        var res_out = document.getElementById('res_out');
+        var res_room = document.getElementById('res_room');
+        var res_price = document.getElementById('res_price');
 
-                {% bootstrap_form roomform %}
-                <p id="room_info"></p>
+        res_name.innerHTML = nombre.value;
+        res_surname.innerHTML = apellidos.value;
+        res_in.innerHTML = llegada.value;
+        res_out.innerHTML = salida.value;
+        res_room.innerHTML = habitacion.options[habitacion.selectedIndex].text;
+        res_price.innerHTML = $(price_string).text() + " €";
 
-                {%for room in rooms%}
-                    <div class="jumbotron" id="{{ room.id_habitacion }}" style="display: none;">
-                        <h2>{{room.titulo}}</h2>
-                        <p><span class="glyphicon glyphicon-fire" aria-hidden="true"></span> {{room.tipo}} </p>
-                        <p><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Descripcion: {{room.descripcion}} </p>
-                        <p><span class="glyphicon glyphicon-euro" aria-hidden="true"></span> Precio:{{room.precio}} </p>
-                        <p><span class="glyphicon glyphicon-object-align-left" aria-hidden="true"></span> Planta: {{room.planta}} </p>
-                        <p><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Camas: {{room.camas}} </p>
-                    </div>
-                {%endfor%}
+        //fechas.innerHTML = habitacion.options[habitacion.selectedIndex].text
 
-                <div class="progress">
-                   <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 30%;"><span class="sr-only">30% Completado</span></div>
-                 </div>
-
-                <div class="form-group">
-                    <input id="second-button" type="button" class="btn btn-primary" value="Siguiente"></input>
-                </div>
+        elem.innerHTML = "Resumen de la reserva"
 
 
+        $("#third-step-div").animate({
+            width: "toggle"
+            /*
+            width: "show"
+            width: "hide"
+            */
+        });
+    });
+    $("#third-back-button").click(function(){
+        $("#third-step-div").animate({
+            width: "toggle"
+            /*
+            width: "show"
+            width: "hide"
+            */
+        });
 
-                <script>
-                function ShowRoomInfo() {
-                    var selected_room = document.getElementById("id_disponibles").value;
-                    //document.getElementById("room_info").innerHTML = "You selected: " + selected_room;
+        var elem = document.getElementById('second-step-div');
+        elem.style.visibility = 'visible';
+        var elem = document.getElementById('page-title');
+        var llegada = document.getElementById('id_llegada');
+        var salida = document.getElementById('id_salida');
+        var fechas = document.getElementById('fechas');
+        fechas.innerHTML = "<strong>del </strong>" + llegada.value + "<strong> al </strong>" + salida.value;
+        elem.innerHTML = "Seleccione una habitación"
 
-                    for (i = 1; i <= {{room_number}}; i++){
-                        var room = document.getElementById(i);
-                        room.style.display = 'none';
-                    }
+        $("#second-step-div").animate({
+            width: "toggle"
+            /*
+            width: "show"
+            width: "hide"
+            */
+        });
 
-                    var room = document.getElementById(selected_room);
-                    room.style.display = 'block';
 
-                    //document.getElementById("room_info").innerHTML = "You selected: " + selected_room;
+    });
+});
+</script>
+
+<div class="caption-full">
+    <h2 class="text-center" id="page-title"> Seleccione una fecha de entrada y otra de salida </h2>
+    <h4 class="text-center" id="fechas"></h4>
+    <div id="first-step-div">
+
+        <form role="form" method="post">
+            {% csrf_token %}
+            {% bootstrap_form dayform %}
+
+            <div class="progress">
+                <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"><span class="sr-only">0% Completado</span></div>
+            </div>
+            <div  class="form-group">
+                <input id="first-button" type="button" class="btn btn-primary" value="Siguiente"></input>
+            </div>
+        </form>
+    </div>
+
+    <div id="second-step-div" style="display: none;">
+        <form role="form" method="post" id="second-step" >
+            {% csrf_token %}
+
+
+
+            {% bootstrap_form roomform %}
+            <p id="room_info"></p>
+
+            {%for room in rooms%}
+            <div class="jumbotron" id="{{ room.id_habitacion }}" style="display: none;">
+                <h2>{{room.titulo}}</h2>
+                <p><span class="glyphicon glyphicon-fire" aria-hidden="true"></span> {{room.tipo}} </p>
+                <p><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Descripcion: {{room.descripcion}} </p>
+                <p><span id="id_precio_{{room.id_habitacion}}" class="glyphicon glyphicon-euro" aria-hidden="true" value="{{room.precio}}"> {{room.precio}} </span> </p>
+                <p><span class="glyphicon glyphicon-object-align-left" aria-hidden="true"></span> Planta: {{room.planta}} </p>
+                <p><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Camas: {{room.camas}} </p>
+            </div>
+            {%endfor%}
+
+            <div class="progress">
+                <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 30%;"><span class="sr-only">30% Completado</span></div>
+            </div>
+
+            <div class="form-group">
+                <input id="second-back-button" type="button" class="btn btn-primary" value="Atras"></input>
+                <input id="second-button" type="button" class="btn btn-primary" value="Siguiente"></input>
+            </div>
+
+
+
+            <script>
+            function ShowRoomInfo() {
+                var selected_room = document.getElementById("id_disponibles").value;
+                //document.getElementById("room_info").innerHTML = "You selected: " + selected_room;
+
+                for (i = 1; i <= {{room_number}}; i++){
+                    var room = document.getElementById(i);
+                    room.style.display = 'none';
                 }
-                </script>
 
-            </form>
+                var room = document.getElementById(selected_room);
+                room.style.display = 'block';
+
+                //document.getElementById("room_info").innerHTML = "You selected: " + selected_room;
+            }
+            </script>
+
+        </form>
+    </div>
+
+    <div id="third-step-div" style="display: none;">
+
+        <form role="form" method="post">
+            {% csrf_token %}
+            {% bootstrap_form userform %}
+
+            <div class="progress">
+                <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 80%;"><span class="sr-only">80% Completado</span></div>
+            </div>
+            <div  class="form-group">
+                <input id="third-back-button" type="button" class="btn btn-primary" value="Atras"></input>
+                <input id="third-button" type="button" class="btn btn-primary" value="Siguiente"></input>
+            </div>
+        </form>
+    </div>
+
+    <div id="fourth-step-div" style="display: none;">
+
+        <div class="row">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Servicio a contratar</h3>
+                    </div>
+                    <div class="panel-body">
+                        <ul class="list-group">
+                            <li class="list-group-item"><strong>Nombre: </strong><span id="res_name"></span></li>
+                            <li class="list-group-item"><strong>Apellidos: </strong><span id="res_surname"></span></li>
+                            <li class="list-group-item"><strong>Fecha entrada: </strong><span id="res_in"></span></li>
+                            <li class="list-group-item"><strong>Fecha salida: </strong><span id="res_out"></span></li>
+                            <li class="list-group-item"><strong>Reserva: </strong><span id="res_room"></span></li>
+                            <li class="list-group-item"><strong>Precio: </strong><span id="res_price"></span></li>
+                        </ul>
+                    </div>
+                </div>
         </div>
+        <form role="form" method="post">
+
+
+
+                <div class="progress">
+                    <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 99%;"><span class="sr-only">99% Completado</span></div>
+                </div>
+                <div  class="form-group">
+                    <input id="last-back-button" type="button" class="btn btn-warning" value="Atras"></input>
+                    <input id="last-button" type="button" class="btn btn-success" value="Confirmar"></input>
+                </div>
+            </form>
+
+
 
 
     </div>
 
-<!-- /.container -->
+    <!-- /.container -->
 
-{% endblock %}
+    {% endblock %}
