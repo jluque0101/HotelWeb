@@ -59,5 +59,13 @@ class ContactPageView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super(ContactPageView, self).get_context_data(**kwargs)
-        context['contact'] = 'contact'
+        context['page'] = 'contact'
+        return context
+
+class TransportPageView(TemplateView):
+    template_name = 'transport.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(TransportPageView, self).get_context_data(**kwargs)
+        context['page'] = 'transport'
         return context

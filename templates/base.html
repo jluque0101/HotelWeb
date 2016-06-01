@@ -27,7 +27,7 @@
 					<a href="#">Servicios</a>
 				</li>
 				<li>
-					<a href="#">Contacto</a>
+					<a href="{% url 'contact' %}">Contacto</a>
 				</li>
 			</ul>
 		</div>
@@ -53,8 +53,8 @@
 		                <a href="{% url 'booking' %}" class="list-group-item {% if page == "booking" %} active {%endif%}">Reservar</a>
 						<a href="{% url 'gallery' %}" class="list-group-item {% if page == "gallery" %} active {%endif%}">Galería de fotos</a>
 						<a href="#" class="list-group-item">Habitaciones</a>
+						<a href="{% url 'transport' %}" class="list-group-item {% if page == "transport" %} active {%endif%}">Transporte</a>
 						<a href="#" class="list-group-item">Ocio</a>
-						<a href="#" class="list-group-item">Transporte</a>
 						<a href="{% url 'contact' %}" class="list-group-item {% if page == "contact" %} active {%endif%}">Contacto</a>
 		            </div>
 		        </div>
