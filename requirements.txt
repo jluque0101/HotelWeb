@@ -6,7 +6,6 @@ django-bootstrap3==7.0.1
 django-bootstrap3-datetimepicker-2==2.4.2
 django-debug-toolbar==1.4
 django-dynamic-fixture==1.8.5
-django-leaflet==0.18.1
 django-tagging==0.4.3
 execnet==1.4.1
 fake-factory==0.5.7
