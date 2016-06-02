@@ -10,3 +10,4 @@ __pycache__/
 # db.sqlite3
 hotel.egg-info/
 /public/static
+DIU_HOTEL_WASP.sqlite3

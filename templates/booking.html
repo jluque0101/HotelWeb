@@ -177,10 +177,13 @@ $(document).ready(function(){
         <form role="form" method="post" id="second-step" >
             {% csrf_token %}
 
+            <select onchange="ShowRoomInfo()" id="id_disponibles" class="form-control">
+                {%for room in rooms%}
+                    <option value="{{room.id_habitacion}}">{{room.titulo}}</option>
+                {%endfor%}
+            </select>
 
-
-            {% bootstrap_form roomform %}
-            <p id="room_info"></p>
+            <br>
 
             {%for room in rooms%}
             <div class="jumbotron" id="{{ room.id_habitacion }}" style="display: none;">

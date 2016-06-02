@@ -44,7 +44,7 @@
     </div>
     <div id="links">
     {%for pict in pictures%}
-        <a href="/media/pisos/1/2e4Vv.png" title="{{pict.titulo}}" data-gallery>
+        <a href="/media/{{pict.pic}}" title="{{pict.titulo}}" data-gallery>
             <img src="/media/{{pict.pic}}" alt="{{pict.titulo}}" height="75" width="75">
         </a>
     {%endfor%}
