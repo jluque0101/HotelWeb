@@ -1,6 +1,8 @@
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
 from app import views, forms
+from django.conf.urls.static import static
+from django.conf import settings
 from app.views import *
 
 admin.autodiscover()
@@ -20,7 +22,7 @@ urlpatterns = patterns('',
     # url(r'^form_with_files$', FormWithFilesView.as_view(), name='form_with_files'),
     # url(r'^pagination$', PaginationView.as_view(), name='pagination'),
     # url(r'^misc$', MiscView.as_view(), name='misc'),
-)
+) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 # Development
 from django.conf import settings

@@ -7,7 +7,7 @@ from django.db.models.fields.files import FieldFile
 from django.views.generic import FormView
 from django.views.generic.base import TemplateView
 from django.contrib import messages
-from hotel.app.models import Habitacion
+from hotel.app.models import Habitacion, Imagen
 
 from .forms import SelectDayForm, SelectRoomForm, PersonalDataForm
 
@@ -50,6 +50,9 @@ class GalleryPageView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super(GalleryPageView, self).get_context_data(**kwargs)
+        pictures = Imagen.objects.all().values()
+        print(pictures)
+        context['pictures'] = pictures
         context['page'] = 'gallery'
         return context
 
